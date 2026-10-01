@@ -1,7 +1,7 @@
 // Número do WhatsApp do administrador (DDI + DDD + número, só dígitos).
 // Pode ser sobrescrito pela variável VITE_WHATSAPP_NUMBER.
 export const WHATSAPP_NUMBER: string =
-  (import.meta.env.VITE_WHATSAPP_NUMBER as string | undefined) ?? "5511999999999";
+  (import.meta.env["VITE_WHATSAPP_NUMBER"] as string | undefined) ?? "5511999999999";
 
 export const BRAND_NAME = "Ponte Dev";
 

@@ -25,6 +25,8 @@ export const Route = createFileRoute("/diagnostico")({
   component: Diagnostic,
 });
 
+type Errs = { area?: string; fear?: string; email?: string; phone?: string; consent?: string };
+
 const STEP_NAMES = ["Seu momento", "Seu desafio", "Seu contato"];
 
 function OptionList({ options, value, onChange }: { options: string[]; value: string; onChange: (v: string) => void }) {
@@ -49,7 +51,7 @@ function OptionList({ options, value, onChange }: { options: string[]; value: st
   );
 }
 
-function FieldError({ msg }: { msg?: string }) {
+function FieldError({ msg }: { msg?: string | undefined }) {
   return msg ? <p className="mt-2 text-sm text-destructive">{msg}</p> : null;
 }
 
@@ -62,7 +64,7 @@ function Diagnostic() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [consent, setConsent] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Errs>({});
   const [saving, setSaving] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [done, setDone] = useState(false);
@@ -73,7 +75,7 @@ function Diagnostic() {
   const finalFear = fear === "Outro" ? fearOther.trim() : fear;
 
   function next() {
-    const e: Record<string, string> = {};
+    const e: Errs = {};
     if (step === 0 && !finalArea) e.area = area === "Outra" ? "Conte qual é a sua área." : "Selecione uma opção para continuar.";
     if (step === 1 && !finalFear) e.fear = fear === "Outro" ? "Descreva seu maior medo." : "Selecione uma opção para continuar.";
     setErrors(e);
@@ -83,7 +85,7 @@ function Diagnostic() {
   }
 
   async function submit() {
-    const e: Record<string, string> = {};
+    const e: Errs = {};
     const em = emailSchema.safeParse(email);
     if (!em.success) e.email = "Informe um email válido.";
     const ph = normalizeBrPhone(phone);
