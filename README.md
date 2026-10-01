@@ -27,7 +27,7 @@ Este projeto utiliza inteligência artificial e automação para guiar profissio
 ### 2. Formulário de Diagnóstico
 <img width="1174" height="863" alt="Captura de tela 2026-10-01 091320" src="https://github.com/user-attachments/assets/7eb04115-8f70-4f4a-aa5a-e0863c91f378" />
 
-## Tecnologias Utilizadas
+## Tecnos Utilizadas
 - **Frontend:** React, TypeScript, Tailwind CSS, TanStack Start
 - **Plataforma:** Lovable.dev
 - **Hospedagem & Deploy:** Lovable / Supabase
